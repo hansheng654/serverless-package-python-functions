@@ -40,8 +40,9 @@ class PkgPyFuncs {
   autoconfigArtifacts() {
     _.map(this.serverless.service.functions, (func_config, func_name) => {
       let autoArtifact = `${this.buildDir}/${func_config.name}.zip`
+        if(func_config['runtime'].includes('python')){
       func_config.package.artifact = func_config.package.artifact || autoArtifact
-      this.serverless.service.functions[func_name] = func_config
+      this.serverless.service.functions[func_name] = func_config }
     })
   }
 
